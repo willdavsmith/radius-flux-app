@@ -40,16 +40,3 @@ resource frontend 'Applications.Core/containers@2023-10-01-preview' = {
     }
   }
 }
-
-resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
-  name: 'flux-demo-gateway'
-  properties: {
-    application: app.id
-    routes: [
-      {
-        path: '/'
-        destination: 'http://${frontend.name}:3000'
-      }
-    ]
-  }
-}

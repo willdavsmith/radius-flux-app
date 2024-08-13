@@ -9,10 +9,10 @@ resource env 'Applications.Core/environments@2023-10-01-preview' = {
       namespace: 'flux-demo'
     }
     recipes: {
-      'Applications.Datastores/sqlDatabases': {
+      'Applications.Datastores/redisCaches': {
         default: {
           templateKind: 'bicep'
-          templatePath: 'ghcr.io/radius-project/recipes/local-dev/sqldatabases:latest'
+          templatePath: 'ghcr.io/radius-project/recipes/local-dev/rediscaches:latest'
         }
       }
     }
@@ -38,5 +38,18 @@ resource frontend 'Applications.Core/containers@2023-10-01-preview' = {
         }
       }
     }
+    connections: {
+      redis: {
+        source: db.id
+      }
+    }
+  }
+}
+
+resource db 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
+  name: 'db'
+  properties: {
+    application: app.id
+    environment: env.id
   }
 }

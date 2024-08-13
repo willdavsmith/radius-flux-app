@@ -27,14 +27,14 @@ resource app 'Applications.Core/applications@2023-10-01-preview' = {
 }
 
 resource frontend 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'flux-demo-frontend'
+  name: 'flux-demo-frontend1'
   properties: {
     application: app.id
     container: {
       image: 'ghcr.io/radius-project/samples/demo:latest'
       ports: {
         web: {
-          containerPort: 3000
+          containerPort: 3001
         }
       }
     }

@@ -45,9 +45,6 @@ resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
   name: 'flux-demo-gateway'
   properties: {
     application: app.id
-    hostname: {
-      fullyQualifiedHostname: 'http://localhost:8080'
-    }
     routes: [
       {
         path: '/'

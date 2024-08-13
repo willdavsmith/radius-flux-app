@@ -46,7 +46,7 @@ resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
   properties: {
     application: app.id
     hostname: {
-      fullyQualifiedHostname: 'localhost:8080'
+      fullyQualifiedHostname: 'http://localhost:8080'
     }
     routes: [
       {

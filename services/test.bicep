@@ -1,3 +1,4 @@
+// Import the set of Radius resources (Applications.*) into Bicep
 extension radius
 
 resource env 'Applications.Core/environments@2023-10-01-preview' = {

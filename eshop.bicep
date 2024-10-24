@@ -14,7 +14,7 @@ param imageTag string = 'latest'
 // Variables ---------------------------------------------------------
 
 // Get the environment name from the environment ID
-var environmentName = last(split(environment.id, '/'))
+var environmentName = 'default'
 resource eshopEnvironment 'Applications.Core/environments@2023-10-01-preview' existing = {
   name: environmentName
 }

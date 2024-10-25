@@ -3,7 +3,7 @@ extension radius
 
 param port int
 param tag string
-param prefix string = 'demo'
+param prefix string
 
 resource env 'Applications.Core/environments@2023-10-01-preview' = {
   name: '${prefix}-env'

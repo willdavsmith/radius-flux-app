@@ -4,13 +4,14 @@ extension radius
 param port int
 param tag string
 param prefix string
+param kubernetesNamespace string
 
 resource env 'Applications.Core/environments@2023-10-01-preview' = {
   name: '${prefix}-env'
   properties: {
     compute: {
       kind: 'kubernetes'
-      namespace: 'default'
+      namespace: kubernetesNamespace
     }
     recipes: {
       'Applications.Datastores/redisCaches': {

@@ -3,9 +3,10 @@ extension radius
 
 param port int
 param tag string
+param prefix string = 'demo'
 
-resource demoenv 'Applications.Core/environments@2023-10-01-preview' = {
-  name: 'default'
+resource env 'Applications.Core/environments@2023-10-01-preview' = {
+  name: '${prefix}-env'
   properties: {
     compute: {
       kind: 'kubernetes'
@@ -22,17 +23,17 @@ resource demoenv 'Applications.Core/environments@2023-10-01-preview' = {
   }
 }
 
-resource demoapp 'Applications.Core/applications@2023-10-01-preview' = {
-  name: 'demoapp'
+resource app 'Applications.Core/applications@2023-10-01-preview' = {
+  name: '${prefix}-app'
   properties: {
-    environment: demoenv.id
+    environment: env.id
   }
 }
 
-resource democtnr 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'democtnr'
+resource ctnr 'Applications.Core/containers@2023-10-01-preview' = {
+  name: '${prefix}-ctnr'
   properties: {
-    application: demoapp.id
+    application: app.id
     container: {
       image: 'ghcr.io/radius-project/samples/demo:${tag}'
       ports: {
@@ -43,16 +44,16 @@ resource democtnr 'Applications.Core/containers@2023-10-01-preview' = {
     }
     connections: {
       redis: {
-        source: demodb.id
+        source: db.id
       }
     }
   }
 }
 
-resource demodb 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
-  name: 'demodb'
+resource db 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
+  name: '${prefix}-db'
   properties: {
-    application: demoapp.id
-    environment: demoenv.id
+    application: app.id
+    environment: env.id
   }
 }

@@ -1,10 +1,10 @@
 // Import the set of Radius resources (Applications.*) into Bicep
 extension radius
 
-param port int
-param tag string
-param prefix string
-param kubernetesNamespace string
+param port int = 3000
+param tag string = 'latest'
+param prefix string = 'demo-app'
+param kubernetesNamespace string = 'demo-app'
 
 resource env 'Applications.Core/environments@2023-10-01-preview' = {
   name: '${prefix}-env'

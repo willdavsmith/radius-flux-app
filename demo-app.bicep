@@ -2,7 +2,7 @@
 extension radius
 
 param port int
-param tag string
+param tag string = 'notlatest'
 param prefix string
 param kubernetesNamespace string
 

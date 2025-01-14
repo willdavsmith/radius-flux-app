@@ -1,7 +1,7 @@
 // Import the set of Radius resources (Applications.*) into Bicep
 extension radius
 
-param port int = 3002
+param port int = 3000
 param tag string = 'latest'
 param prefix string = 'demo-app'
 param kubernetesNamespace string = 'demo-app'
@@ -48,6 +48,12 @@ resource ctnr 'Applications.Core/containers@2023-10-01-preview' = {
         source: db.id
       }
     }
+    extensions: [
+      {
+        kind: 'manualScaling'
+        replicas: int('2')
+      }
+    ]
   }
 }
 

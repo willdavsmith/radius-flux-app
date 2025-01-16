@@ -1,0 +1,4 @@
+radiusResourceGroup: demo-app
+bicepBuild:
+  - name: demo-app.bicep
+    params: demo-app.bicepparam

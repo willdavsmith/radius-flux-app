@@ -5,7 +5,7 @@ param port int = 3001
 param tag string = 'latest'
 param prefix string = 'demo-app'
 param kubernetesNamespace string = 'demo-app'
-param replicas string = '3'
+param replicas string = '4'
 
 resource env 'Applications.Core/environments@2023-10-01-preview' = {
   name: '${prefix}-env'

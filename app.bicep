@@ -2,10 +2,7 @@
 extension radius
 
 @description('The Radius environment name to deploy the application and resources to.')
-param environment string
-
-@description('The number of replicas to deploy for the demo container.')
-param replicas string
+param environment string = 'default'
 
 resource env 'Applications.Core/environments@2023-10-01-preview' existing = {
   name: environment
@@ -30,11 +27,6 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
         }
       }
     }
-    extensions: [
-      {
-        kind: 'manualScaling'
-        replicas: int(replicas)
-      }
-    ]
   }
 }
+
